@@ -5,7 +5,8 @@ import { Score } from "./Score.js";
 
 const output = select('.output p');
 const startBtn = select('.start-btn');
-const playAgainBtn = select('.play-again');
+const playAgainBtn = select('.play-again')
+const playAgainBtnScreen = select('.play-again-result-btn')
 const userInput = select('.user-input');
 const timer = select('.timer h3')
 const pointCount = select('.count h3')
@@ -13,7 +14,7 @@ const playSong = new Audio('./assets/img/electro-pop-124340.mp3')
 playSong.volume = 0.15;
 const correctSound = new Audio('./assets/img/ding-126626.mp3')
 const wrongSound = new Audio('./assets/img/wrong-47985.mp3')
-const resultPage = select('.win-result')
+const winResult = select('.win-result')
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
@@ -30,7 +31,7 @@ const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
 'keyboard', 'window'];
 
 let shuffleWords = words.sort(() => Math.random() - 0.5);
-let timeLeft = 10;
+let timeLeft = 3;
 let points = 0;
 let currentWord = '';
 const arr = []
@@ -51,8 +52,6 @@ function startTimer(){
             if(timeLeft <= 0){
                 clearInterval(timeExpire)
                 getScore()
-                output.innerText = `Time is up!`
-                resultPage.style.visibility = 'visible'
             }
         }, 1000)
 }
@@ -105,18 +104,19 @@ function getScore(){
 
     const newScore = new Score(todaysDate, newPoints, newPerc);
 
-        resultPage.style.visibility = 'visible'
+    winResult.classList.add('visible')
 
-        resultPage.innerHTML = `
-        <div class="result-btn">
-                <h2>Date: ${todaysDate}</h2>
-                <h2>Your Points: ${newPoints}</h2> 
-                <h2>Percentage: ${newPerc}</h2>
-                <button class="button" id="play-again-win"> Play Again? </button>
-        `
+    winResult.innerHTML = `   <div class="result-btn">
+
+                                <h4>${todaysDate}</h4>
+                                <h4>${newPoints}</h4>
+                                <h4>${newPerc}</h4>
+                                <button class="play-again-result-btn">Play again?</button>
+                            </div>`
     
 }
 
-// onEvent('click', playAgainBtn, function(){
-
-// })
+onEvent('click', playAgainBtnScreen, function(){
+    winPage.classList.remove('visible')
+    winPage.classList.add('win-result')
+})
