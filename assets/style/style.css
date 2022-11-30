@@ -1,0 +1,133 @@
+@import "./reset.css";
+
+/* ---------------------------------------------------- */
+/*                                                      */
+/* ---------------------------------------------------- */
+
+:root {
+    --app-dark-bg: #1a1d28;
+    --app-light-bg: #f0f2f4;
+    --app-red: #ff3c57;
+    --app-green: #33ab4e;
+    --app-purple: #833cff;
+    --app-orange: #ff833c;
+    --app-blue: #3c57ff;
+    --app-blue-hover: #364ee6;
+   }
+
+body{
+    background-color: var(--app-dark-bg);
+}
+
+main {
+    height: 100vh;
+    background: rgb(255, 0, 0)url(../img/racinggif.gif) center center / cover no-repeat;
+}
+
+.overlay {
+    background: rgb(20 24 28 / .75);
+    height: 100vh;
+}
+
+.container {
+    width: min(100% - 30px, 1080px);
+    margin-inline: auto;
+}
+.flexbox {
+    display: flex;
+}
+
+h1, h2, p {
+    color: #fff;
+}
+
+/* ---------------------------------------------------- */
+/*        Header                                        */
+/* ---------------------------------------------------- */
+
+header {
+    padding-top: 18px;
+}
+
+.btn-wrapper {
+    width: 75%;
+    text-align: right;
+}
+.button {
+    background-color: var(--app-green);
+    border-radius: 4em;
+    font-size: 16px;
+    color: white;
+    padding: 0.8em 1.8em;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+  }
+.title {
+    width: 25%;
+}
+
+h1 {
+}
+
+h1 span {
+    color: var(--app-red)
+}
+
+.context {
+    font-size: 12px;
+}
+
+h2 span {
+    color: var(--app-green);
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.game-input {
+    text-align: center;
+}
+
+.fa-arrow-up {
+    color: var(--app-red);
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+input[type="text"]{
+    padding: 10px;
+    height: 50px;
+    width: 300px;
+    border-radius: 4px;
+    background-color: var(--app-light-bg);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2) inset, -1px -1px 1px 0 rgba(255, 255, 255, 0.1) inset;
+    text-align: left;
+    color: #1a1d28;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.output{
+    padding: 10px;
+    height: 50px;
+    width: 300px;
+    border-radius: 4px;
+    background-color: rgb(0 0 0 / 0.2);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2) inset, -1px -1px 1px 0 rgba(255, 255, 255, 0.1) inset;
+    text-align: left;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
