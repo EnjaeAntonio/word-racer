@@ -78,14 +78,10 @@ h1 span {
     color: var(--app-red)
 }
 
-.context {
-    font-size: 12px;
-}
 
-h2 span {
-    color: var(--app-green);
-}
-
+/* ---------------------------------------------------- */
+/*        Game                                          */
+/* ---------------------------------------------------- */
 .game {
     display: flex;
     justify-content: center;
@@ -93,12 +89,61 @@ h2 span {
     height: 80vh;
 }
 
+.start-btn {
+    background-color: var(--app-green);
+    color: #fff;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 40px;
+    border-radius: 4px  ;
+}
+
+h2 span {
+    color: var(--app-red);
+}
+
+.game-input > * {
+    margin-bottom: 15px;
+    gap: 60px;
+}
+
 .game-input {
     text-align: center;
 }
+.count-points {
+    display: flex;
+}
+
+.timer, .count {
+    border-radius: 4px;
+}
+
+.timer {
+    background-color: var(--app-orange);
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    width: 50%;
+}
+
+.count {
+    background-color: var(--app-orange);
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    color: #fff;
+    width: 50%;
+  }
+
+.context {
+    color: var(--app-red);
+    font-size: 12px;
+}
 
 .fa-arrow-up {
-    color: var(--app-red);
+    color: var(--app-light-bg);
     margin: 10px 0;
     font-size: 24px;
 }
@@ -119,15 +164,14 @@ input[type="text"]{
 }
 
 .output{
-    padding: 10px;
-    height: 50px;
-    width: 300px;
+    padding: 10px 0;
     border-radius: 4px;
-    background-color: rgb(0 0 0 / 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2) inset, -1px -1px 1px 0 rgba(255, 255, 255, 0.1) inset;
-    text-align: left;
+    text-align: center;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.output p {
+    font-size: 20px;
 }

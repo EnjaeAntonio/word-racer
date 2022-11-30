@@ -1,8 +1,11 @@
 'use strict';
 
-import { select } from "./utils.js";
+import { select, onEvent } from "./utils.js";
 
-const output = select('.output p')
+const output = select('.output p');
+const startBtn = select('.start-btn');
+const playAgainBtn = select('.play-again')
+
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
@@ -22,4 +25,4 @@ var randomWord = Math.floor(Math.random()*words.length);
 
 console.log(words[randomWord])
 
-output.innerText = randomWord
+output.innerText = words[randomWord]
