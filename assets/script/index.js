@@ -4,7 +4,8 @@ import { select, onEvent } from "./utils.js";
 
 const output = select('.output p');
 const startBtn = select('.start-btn');
-const playAgainBtn = select('.play-again')
+const playAgainBtn = select('.play-again');
+const userInput = select('.user-input');
 
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
@@ -26,3 +27,7 @@ var randomWord = Math.floor(Math.random()*words.length);
 console.log(words[randomWord])
 
 output.innerText = words[randomWord]
+
+addEventListener('keyup', function(){
+    
+})

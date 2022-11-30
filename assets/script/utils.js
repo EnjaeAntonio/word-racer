@@ -6,19 +6,19 @@ function onEvent(event, selector, callback) {
 
 function select(selector, parent = document) {
     return parent.querySelector(selector);
-}
+ }
 
-function selectAll(selector, parent = document) {
+ function selectAll(selector, parent = document) {
     return parent.querySelectorAll(selector);
-}
+ }
 
 
-function create(element, parent = document) {
-    return parent.createElement(element);
-}
+ function create(element, parent = document) {
+   return parent.createElement(element);
+ }
 
-function log(content) {
-    console.log(content);
-}
+ function log(content) {
+   console.log(content);
+ }
 
 export {onEvent, select, selectAll, create, log};
