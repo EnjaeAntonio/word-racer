@@ -146,6 +146,9 @@ onEvent('click', playAgain, function(){
 
     output.innerHTML = `<p>Click start to play!</p>`;
     points = 0;
+    let timeLeft = 30;
+    clearInterval(timeLeft)
+    timer.innerText = `Time: ${timeLeft}`
     pointCount.innerText = `Points: ${points}`
 })
 
