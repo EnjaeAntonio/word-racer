@@ -33,8 +33,8 @@ const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
 'keyboard', 'window'];
 
-let shuffleWords = words.sort(() => Math.random() - 0.5);
 let points = 0;
+let errors = 0;
 let currentWord = '';
 const arr = []
 
@@ -47,13 +47,13 @@ function getRandomWord(arr){
 
 function startTimer(){
         // Start Timer
-        let timeLeft = 30;
+        let timeLeft = 10;
         let timeExpire = setInterval(function(){
             timeLeft -= 1;
             timer.innerText = `Time: ${timeLeft}`
            
             if(timeLeft <= 0){
-                clearInterval(timeExpire)
+                clearInterval(timeExpire)   
                 getScore()
 
             }  
@@ -68,6 +68,7 @@ function startTimer(){
 
 
 onEvent('click', startBtn, function(){
+
     startTimer();    
     playSong.play();
     startSound.play()
@@ -83,18 +84,16 @@ onEvent('click', startBtn, function(){
                     correctSound.play()
                     userInput.value = '';
                     output.innerText = `${randomWord = getRandomWord(words)}`;
+
                     points++
-                   
                     pointCount.innerText = `Points: ${points}`
 
                     let wordIndex = Math.floor(Math.random()*words.length)
-
                     currentWord = randomWord;
-
                     arr.push(currentWord)
 
-                    currentWord.slice(wordIndex, 1)
                 } else if (output.innerText !== userInput.value) {
+                    errors++
                     wrongSound.play()
                 } else {
                     getScore()
@@ -104,13 +103,15 @@ onEvent('click', startBtn, function(){
 })
 
 function getScore(){
+
     playSong.pause()
     playSong.currentTime = 0;
-    var newPoints = points;
+    playAgain.classList.add('bounce')
+    let newPoints = points;
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
 
-    let percentage = (newPoints / words.length) * 100;
+    let percentage = (newPoints / words.length ) * 100;
     let newPerc = percentage.toFixed(2)
 
     const newScore = new Score(todaysDate, newPoints, newPerc);
@@ -122,7 +123,7 @@ function getScore(){
             <h2>Results!</h2>
             <h3>Date: <span>${newScore.date}</span></h3>
             <h3>Points: <span>${newScore.points}</span></h3>
-            <h3>Percentage: <span>${newScore.percentage}%</span></h3>
+            <h3>You hit<span> ${newScore.percentage}%</span> out of <span>${words.length}</span> words!</h3>
             <div class="btn-result-wrapper">
             </div>
         </div>
@@ -136,6 +137,9 @@ function getScore(){
 onEvent('click', playAgain, function(){
     playSong.pause()
     playSong.currentTime = 0;
+
+    playAgain.classList.remove('bounce')
+
 
     startSound.play()
     startBtn.style.visibility = 'visible'

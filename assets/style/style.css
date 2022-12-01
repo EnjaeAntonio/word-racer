@@ -69,6 +69,15 @@ button {
     transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s;
   }
+
+  .bounce {
+    animation: bounce 2s ease infinite;
+  }
+  @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-30px);}
+      60% {transform: translateY(-15px);}
+  }
 .title {
     width: 25%;
 }
@@ -110,16 +119,17 @@ h1 span {
     align-items: center;
     justify-content: center;
     background-color: rgba(54, 78, 230, .9);
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 400px;
     border-radius: 10px;
 }
 
 .results {
-    width: 250px;
+    width: 300px;
 }
 
 .results h2 {
+    font-size: 34px;
     text-transform: uppercase;
 }
 
@@ -128,6 +138,7 @@ h3 span {
 }
 
 .results h3 {
+    font-size: 24px;
     color: #fff;
     padding-bottom: 15px;
     text-align: left;
@@ -173,12 +184,16 @@ h2 span {
     display: flex;
 }
 
+.timer .count, h3 {
+    font-size: 24px;
+}
+
 .timer, .count {
     border-radius: 4px;
 }
 
 .timer {
-    background-color: var(--app-orange);
+    background-color: var(--app-purple);
     padding: 10px;
     font-size: 14px;
     text-align: center;
@@ -187,7 +202,7 @@ h2 span {
 }
 
 .count {
-    background-color: var(--app-orange);
+    background-color: var(--app-purple);
     text-align: center;
     font-size: 14px;
     padding: 10px;
