@@ -3,13 +3,11 @@
 class Score {
     #date;
     #points;
-    #errors;
     #percentage;
 
-    constructor(date, points, errors, percentage) {
+    constructor(date, points, percentage) {
         this.#date = date;
         this.#points = points;
-        this.#errors = errors;
         this.#percentage = percentage;
     }
 
@@ -20,17 +18,12 @@ class Score {
     get points() {
         return this.#points;
     }
-
-    get errors(){
-        return this.#errors
-    }
-    
     get percentage() {
         return this.#percentage;
     }
 
     getInfo(){
-        return `Date: ${this.date} Points: ${this.points} Misses: ${this.errors}Percentage: ${this.percentage}`
+        return `Date: ${this.date} Points: ${this.points} Percentage: ${this.percentage}`
     }
 }
 
