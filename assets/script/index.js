@@ -70,7 +70,7 @@ function startTimer(){
         startSound.play();
         userInput.value = '';
         startBtn.style.visibility = 'hidden'
-        
+
         let randomWord = getRandomWord(words)
         output.innerText = randomWord
     
@@ -121,7 +121,7 @@ function getScore(){
             <h2>Results!</h2>
             <h3>Date: <span>${newScore.date}</span></h3>
             <h3>Points: <span>${newScore.points}</span></h3>
-            <h3>Percentage: You hit<span>${newScore.percentage}%</span> out of 90 words!</h3>
+            <h3>Percentage: You hit <span>${newScore.percentage}%</span> out of 90 words!</h3>
             <div class="btn-result-wrapper">
             </div>
         </div>
