@@ -90,7 +90,7 @@ function startTimer(){
                         arr.push(currentWord)
     
                     } else if (output.innerText !== userInput.value) {
-
+                        userInput.value = '';
                     } else {
                         getScore()
                     }
