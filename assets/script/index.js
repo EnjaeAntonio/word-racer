@@ -5,16 +5,19 @@ import { Score } from "./Score.js";
 
 const output = select('.output p');
 const startBtn = select('.start-btn');
-const playAgainBtn = select('.play-again')
-const playAgainBtnScreen = select('.play-again-result-btn')
+const playAgain = select('.play-again-btn')
+const play = document.getElementById('play')
+const resultPage = select('.result-page')
 const userInput = select('.user-input');
 const timer = select('.timer h3')
 const pointCount = select('.count h3')
 const playSong = new Audio('./assets/img/electro-pop-124340.mp3')
-playSong.volume = 0.15;
+playSong.volume = 0.05;
 const correctSound = new Audio('./assets/img/ding-126626.mp3')
 const wrongSound = new Audio('./assets/img/wrong-47985.mp3')
-const winResult = select('.win-result')
+const startSound = new Audio('./assets/img/start-13691.mp3')
+
+
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
@@ -31,7 +34,6 @@ const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
 'keyboard', 'window'];
 
 let shuffleWords = words.sort(() => Math.random() - 0.5);
-let timeLeft = 3;
 let points = 0;
 let currentWord = '';
 const arr = []
@@ -45,22 +47,31 @@ function getRandomWord(arr){
 
 function startTimer(){
         // Start Timer
+        let timeLeft = 30;
         let timeExpire = setInterval(function(){
             timeLeft -= 1;
             timer.innerText = `Time: ${timeLeft}`
-    
+           
             if(timeLeft <= 0){
                 clearInterval(timeExpire)
                 getScore()
+
+            }  
+            if(onEvent('click', playAgain, function(){
+                clearInterval(timeExpire)
+
+            })){
             }
+
         }, 1000)
 }
 
 
 onEvent('click', startBtn, function(){
-
     startTimer();    
     playSong.play();
+    startSound.play()
+    startBtn.style.visibility = 'hidden'
     let randomWord = getRandomWord(words)
     output.innerText = randomWord
 
@@ -93,30 +104,56 @@ onEvent('click', startBtn, function(){
 })
 
 function getScore(){
-
+    playSong.pause()
+    playSong.currentTime = 0;
     var newPoints = points;
-    console.log(points)
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
 
-    let percentage = (100 * newPoints) / words.length;
+    let percentage = (newPoints / words.length) * 100;
     let newPerc = percentage.toFixed(2)
 
     const newScore = new Score(todaysDate, newPoints, newPerc);
+    resultPage.classList.remove('hidden')
+    resultPage.classList.add('visible')
+    resultPage.innerHTML = `  
+    <div class="result-card">
+        <div class="results">
+            <h2>Results!</h2>
+            <h3>Date: <span>${newScore.date}</span></h3>
+            <h3>Points: <span>${newScore.points}</span></h3>
+            <h3>Percentage: <span>${newScore.percentage}%</span></h3>
+            <div class="btn-result-wrapper">
+            </div>
+        </div>
+    </div>
+`
+  
 
-    winResult.classList.add('visible')
-
-    winResult.innerHTML = `   <div class="result-btn">
-
-                                <h4>${todaysDate}</h4>
-                                <h4>${newPoints}</h4>
-                                <h4>${newPerc}</h4>
-                                <button class="play-again-result-btn">Play again?</button>
-                            </div>`
     
 }
 
-onEvent('click', playAgainBtnScreen, function(){
-    winPage.classList.remove('visible')
-    winPage.classList.add('win-result')
+onEvent('click', playAgain, function(){
+    playSong.pause()
+    playSong.currentTime = 0;
+
+    startSound.play()
+    startBtn.style.visibility = 'visible'
+
+    resultPage.classList.remove('visible')
+    resultPage.classList.add('hidden')
+
+    output.innerHTML = `<p>Click <span>start</span> to play!</p>`;
+    let points = 0;
+    let timeLeft = 60;
+    clearInterval(timeLeft)
+    timer.innerText = `Timer: ${timeLeft}`
+    pointCount.innerText = `Points: ${points}`
 })
+
+
+onEvent('click', play, function(){
+  window.location.reload(true)
+})
+
+
