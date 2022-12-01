@@ -47,7 +47,7 @@ function getRandomWord(arr){
 
 function startTimer(){
         // Start Timer
-        let timeLeft = 10;
+        let timeLeft = 30;
         let timeExpire = setInterval(function(){
             timeLeft -= 1;
             timer.innerText = `Time: ${timeLeft}`
@@ -108,13 +108,14 @@ function getScore(){
     playSong.currentTime = 0;
     playAgain.classList.add('bounce')
     let newPoints = points;
+    let newErrors = errors;
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
 
-    let percentage = (newPoints / words.length ) * 100;
+    let percentage = (newErrors / newPoints ) * 100;
     let newPerc = percentage.toFixed(2)
 
-    const newScore = new Score(todaysDate, newPoints, newPerc);
+    const newScore = new Score(todaysDate, newPoints, newErrors, newPerc);
     resultPage.classList.remove('hidden')
     resultPage.classList.add('visible')
     resultPage.innerHTML = `  
@@ -123,7 +124,8 @@ function getScore(){
             <h2>Results!</h2>
             <h3>Date: <span>${newScore.date}</span></h3>
             <h3>Points: <span>${newScore.points}</span></h3>
-            <h3>You hit<span> ${newScore.percentage}%</span> out of <span>${words.length}</span> words!</h3>
+            <h3>Errors: <span>${newScore.errors}</span></h3>
+            <h3>Accuracy: <span>${newScore.percentage}</span></h3>
             <div class="btn-result-wrapper">
             </div>
         </div>
