@@ -6,7 +6,6 @@ import { Score } from "./Score.js";
 const output = select('.output p');
 const startBtn = select('.start-btn');
 const playAgain = select('.play-again-btn')
-const play = document.getElementById('play')
 const resultPage = select('.result-page')
 const userInput = select('.user-input');
 const timer = select('.timer h3')
@@ -33,7 +32,6 @@ const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
 'keyboard', 'window'];
 
 let points = 0;
-let errors = 0;
 let currentWord = '';
 const arr = []
 
