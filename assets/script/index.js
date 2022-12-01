@@ -70,6 +70,7 @@ function startTimer(){
         startSound.play();
         userInput.value = '';
         startBtn.style.visibility = 'hidden'
+        
         let randomWord = getRandomWord(words)
         output.innerText = randomWord
     
