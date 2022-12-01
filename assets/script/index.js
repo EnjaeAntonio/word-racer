@@ -47,7 +47,7 @@ function startTimer(){
         let timeLeft = 30;
         let timeExpire = setInterval(function(){
             timeLeft -= 1;
-            timer.innerText = `Time: ${timeLeft}`
+            timer.innerText = `Time: ${timeLeft}s`
            
             if(timeLeft <= 0){
                 clearInterval(timeExpire)   
@@ -149,7 +149,7 @@ onEvent('click', playAgain, function(){
     points = 0;
     let timeLeft = 30;
     clearInterval(timeLeft)
-    timer.innerText = `Time: ${timeLeft}`
+    timer.innerText = `Time: ${timeLeft}s`
     pointCount.innerText = `Points: ${points}`
 })
 
