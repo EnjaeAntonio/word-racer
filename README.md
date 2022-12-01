@@ -1,5 +1,5 @@
 # word-racer
-Click the link <a href='https://enjaeantonio.github.io/word-racing' >Here</a> to visit my project!
+Click the link <a href='https://enjaeantonio.github.io/word-racer' >Here</a> to visit my project!
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
