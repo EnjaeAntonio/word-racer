@@ -81,7 +81,6 @@ onEvent('click', startBtn, function(){
         playSong.play();
         startSound.play();
         userInput.value = '';
-        startBtn.style.visibility = 'hidden'
 
         let randomWord = getRandomWord(words)
     
@@ -151,7 +150,6 @@ onEvent('click', playAgain, function(){
     playAgain.classList.add('hidden')
     userInput.value = '';
     startSound.play()
-    startBtn.style.visibility = 'visible'
 
     resultPage.classList.remove('visible')
     resultPage.classList.add('hidden')
