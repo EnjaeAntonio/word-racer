@@ -17,7 +17,18 @@
 
 body{
     background-color: var(--app-dark-bg);
+    animation: fadeIn 0.6s ease-in;
 }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 
 main {
     height: 100vh;
@@ -25,7 +36,7 @@ main {
 }
 
 .overlay {
-    background: rgb(20 24 28 / .88);
+    background: rgb(20 24 28 / .92);
     height: 100vh;
 }
 
@@ -60,7 +71,7 @@ button {
     border-radius: 4em;
     font-size: 16px;
     color: white;
-    padding: 0.8em 1.8em;
+    padding: .6em 1.3em;
     cursor: pointer;
     user-select: none;
     text-align: center;
@@ -82,7 +93,8 @@ button {
     width: 25%;
 }
 
-h1 {
+.title h1 {
+    font-size: 38px;
 }
 
 h1 span {
@@ -111,14 +123,15 @@ h1 span {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(26, 29, 40, .5)
+    background-color: rgba(26, 29, 40, .5);
 }
 
 .result-card {
     display: grid;
     align-items: center;
     justify-content: center;
-    background-color: rgba(54, 78, 230, .9);
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
     height: 400px;
     width: 400px;
     border-radius: 10px;
@@ -129,17 +142,17 @@ h1 span {
 }
 
 .results h2 {
-    font-size: 34px;
-    text-transform: uppercase;
+    font-size: 38px;
 }
 
 h3 span {
-    color: var(--app-red);
+    color: #fff;
 }
 
+
 .results h3 {
-    font-size: 24px;
-    color: #fff;
+    font-size: 29px;
+    color: var(--app-dark-bg);
     padding-bottom: 15px;
     text-align: left;
 }
@@ -158,11 +171,11 @@ h3 span {
 }
 
 .start-btn {
-    background-color: var(--app-green);
+    background-color: var(--app-red);
     color: #fff;
     font-size: 24px;
     font-weight: 600;
-    padding: 10px 40px;
+    padding: 2px 40px;
     border-radius: 4px;
     display: inline;
 }
@@ -173,7 +186,7 @@ h2 span {
 
 .game-input > * {
     margin-bottom: 15px;
-    gap: 60px;
+    gap: 20px;
 }
 
 .game-input {

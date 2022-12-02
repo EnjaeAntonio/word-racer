@@ -13,6 +13,7 @@ const pointCount = select('.count h3')
 const playSong = new Audio('./assets/img/electro-pop-124340.mp3')
 playSong.volume = 0.05;
 const correctSound = new Audio('./assets/img/ding-126626.mp3')
+correctSound.volume = 0.5
 const startSound = new Audio('./assets/img/start-13691.mp3')
 
 
@@ -44,26 +45,37 @@ function getRandomWord(arr){
 
 function startTimer(){
         // Start Timer
-        let timeLeft = 30;
-        let timeExpire = setInterval(function(){
-            timeLeft -= 1;
-            timer.innerText = `Time: ${timeLeft}s`
-           
-            if(timeLeft <= 0){
-                clearInterval(timeExpire)   
-                getScore()
+        let timeLeft = 60;
+        let countDown = 4;
+        let countDownExpire = setInterval(function(){
+            countDown -= 1;
+            output.innerText = `${countDown}`
+            if(countDown <= 0) {
+                clearInterval(countDownExpire)
+                let randomWord = getRandomWord(words)
+                output.innerText = randomWord
+                let timeExpire = setInterval(function(){
+                    timeLeft -= 1;
+                    timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`
 
-            }  
-            if(onEvent('click', playAgain, function(){
-                clearInterval(timeExpire)
-            })){
-            }
+                    if(timeLeft <= 0){
+                        clearInterval(timeExpire)   
+                        getScore()
+                    }  
+                    if(onEvent('click', playAgain, function(){
+                        clearInterval(timeExpire)
+                    }));
+        
+                }, 1000)
+        }
+            }, 1000)
+        }
 
-        }, 1000)
-}
+
+        
 
 
-    onEvent('click', startBtn, function(){
+onEvent('click', startBtn, function(){
 
         startTimer();    
         playSong.play();
@@ -72,7 +84,6 @@ function startTimer(){
         startBtn.style.visibility = 'hidden'
 
         let randomWord = getRandomWord(words)
-        output.innerText = randomWord
     
         addEventListener('keydown', function(event){
     
@@ -94,7 +105,7 @@ function startTimer(){
                     } else {
                         getScore()
                     }
-        }
+            }
         });
     })
 
@@ -108,7 +119,7 @@ function getScore(){
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
 
-
+    playAgain.classList.remove('hidden')
     let percentage = (points / words.length) * 100
     let newPerc = percentage.toFixed(2)
 
@@ -121,7 +132,7 @@ function getScore(){
             <h2>Results!</h2>
             <h3>Date: <span>${newScore.date}</span></h3>
             <h3>Points: <span>${newScore.points}</span></h3>
-            <h3>Percentage: You hit <span>${newScore.percentage}%</span> out of 90 words!</h3>
+            <h3>Percentage: <span>You hit ${newScore.percentage}% out of 90 words!</span></h3>
             <div class="btn-result-wrapper">
             </div>
         </div>
@@ -137,7 +148,7 @@ onEvent('click', playAgain, function(){
     playSong.currentTime = 0;
 
     playAgain.classList.remove('bounce')
-
+    playAgain.classList.add('hidden')
     userInput.value = '';
     startSound.play()
     startBtn.style.visibility = 'visible'
@@ -147,9 +158,9 @@ onEvent('click', playAgain, function(){
 
     output.innerHTML = `<p>Click start to play!</p>`;
     points = 0;
-    let timeLeft = 30;
+    let timeLeft = 60;
     clearInterval(timeLeft)
-    timer.innerText = `Time: ${timeLeft}s`
+    timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`
     pointCount.innerText = `Points: ${points}`
 })
 
