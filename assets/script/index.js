@@ -15,6 +15,8 @@ playSong.volume = 0.05;
 const correctSound = new Audio('./assets/img/ding-126626.mp3')
 correctSound.volume = 0.5
 const startSound = new Audio('./assets/img/start-13691.mp3')
+const car = document.getElementById('my-car');
+
 
 
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
@@ -44,13 +46,18 @@ function getRandomWord(arr){
 }
 
 function startTimer(){
-        // Start Timer
-        let timeLeft = 60;
-        let countDown = 4;
-        let countDownExpire = setInterval(function(){
-            countDown -= 1;
-            output.innerText = `${countDown}`
-            if(countDown <= 0) {
+    // Start Timer
+    let timeLeft = 60;
+    let countDown = 4;
+    let countDownExpire = setInterval(function(){
+        countDown -= 1;
+        output.innerText = `${countDown}`
+        if(countDown <= 0) {
+
+            
+                car.classList.remove('hide-car')
+                car.classList.add('anim')
+
                 clearInterval(countDownExpire)
                 let randomWord = getRandomWord(words)
                 output.innerText = randomWord
@@ -72,8 +79,6 @@ function startTimer(){
         }
 
 
-        
-
 
 onEvent('click', startBtn, function(){
 
@@ -83,11 +88,11 @@ onEvent('click', startBtn, function(){
         userInput.value = '';
         startBtn.style.visibility = 'hidden'
 
+       
         let randomWord = getRandomWord(words)
+
+        addEventListener('keyup', function(event){
     
-        addEventListener('keydown', function(event){
-    
-            if(event.keyCode == 13){
                 event.preventDefault();
                     if(output.innerText == userInput.value){
                         correctSound.play()
@@ -101,11 +106,10 @@ onEvent('click', startBtn, function(){
                         arr.push(currentWord)
     
                     } else if (output.innerText !== userInput.value) {
-                        userInput.value = '';
+
                     } else {
                         getScore()
                     }
-            }
         });
     })
 
@@ -115,7 +119,13 @@ function getScore(){
 
     playSong.pause()
     playSong.currentTime = 0;
-    playAgain.classList.add('bounce')
+    playAgain.classList.add('bounce');
+    playAgain.classList.remove('hidden')
+    startBtn.classList.add('hidden');
+
+    car.classList.remove('anim')
+    car.classList.add('hide-car')
+
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
 
@@ -145,11 +155,15 @@ function getScore(){
 onEvent('click', playAgain, function(){
     playSong.pause()
     playSong.currentTime = 0;
+    startBtn.style.visibility = 'visible'
 
-    playAgain.classList.remove('bounce')
+    playAgain.classList.remove('bounce');
+    playAgain.classList.add('hidden')
     userInput.value = '';
     startSound.play()
-    startBtn.style.visibility = 'visible'
+    
+    car.classList.remove('anim')
+    car.classList.add('hide-car')
 
     resultPage.classList.remove('visible')
     resultPage.classList.add('hidden')
@@ -161,6 +175,3 @@ onEvent('click', playAgain, function(){
     timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`
     pointCount.innerText = `Points: ${points}`
 })
-
-
-
