@@ -81,6 +81,7 @@ onEvent('click', startBtn, function(){
         playSong.play();
         startSound.play();
         userInput.value = '';
+        startBtn.style.visibility = 'hidden'
 
         let randomWord = getRandomWord(words)
     
@@ -118,7 +119,6 @@ function getScore(){
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
 
-    playAgain.classList.remove('hidden')
     let percentage = (points / words.length) * 100
     let newPerc = percentage.toFixed(2)
 
@@ -147,9 +147,9 @@ onEvent('click', playAgain, function(){
     playSong.currentTime = 0;
 
     playAgain.classList.remove('bounce')
-    playAgain.classList.add('hidden')
     userInput.value = '';
     startSound.play()
+    startBtn.style.visibility = 'visible'
 
     resultPage.classList.remove('visible')
     resultPage.classList.add('hidden')
