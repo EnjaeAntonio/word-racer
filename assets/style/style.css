@@ -9,7 +9,7 @@
     --app-light-bg: #f0f2f4;
     --app-red: #ff3c57;
     --app-green: #33ab4e;
-    --app-purple: #833cff;
+    --app-purple: #EC04DE;
     --app-orange: #ff833c;
     --app-blue: #3c57ff;
     --app-blue-hover: #364ee6;
@@ -32,7 +32,8 @@ body{
 
 main {
     height: 100vh;
-    background: rgb(255, 0, 0)url(../img/racinggif.gif) center center / cover no-repeat;
+    height: calc(var(--vh, 1vh) * 100);
+    background: rgb(255, 0, 0)url(../img/bggif.gif) center center / cover no-repeat;
 }
 
 .overlay {
@@ -92,14 +93,15 @@ header {
     background-color: #1f7d35;
 }
 
-  .bounce {
+.bounce {
     animation: bounce 2s ease infinite;
-  }
-  @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-30px);}
-      60% {transform: translateY(-15px);}
-  }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-30px);}
+    60% {transform: translateY(-15px);}
+}
 .title {
     width: 100%;
 }
@@ -270,7 +272,6 @@ input[type="text"]{
 }
 
 .output{
-    width: 600px;
     height: 100px;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.2);
@@ -318,3 +319,24 @@ input[type="text"]{
       left: 0;    
     }
   }
+
+
+@media (max-width: 542px) {
+    .game-input{
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .output p {
+        font-size: 32px;
+    }
+
+    .title h1 {
+        font-size: 58px;
+    }
+    
+    .anim{
+        -webkit-animation-duration: 136s;
+    }
+
+}
