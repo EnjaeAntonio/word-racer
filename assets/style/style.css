@@ -308,6 +308,47 @@ input[type="text"]{
   -webkit-animation-duration: 128s;
 }
 
+.result-wrapper {
+    display: flex;
+}
+
+.leaderboards{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    border: 3px solid var(--app-red);
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+
+.leaderboard-card h2 {  
+    text-align: center;
+}
+
+.entree {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.high-scores{
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: var(--app-orange);
+    color: #fff;
+}
+
+li {
+    padding: 0 20px;
+    color: #fff;
+}
+
+li span {
+    font-size: 1rem;
+    color: var(--app-red);
+}
+
 @keyframes run {
     0% {
       left: 0;
@@ -340,3 +381,4 @@ input[type="text"]{
     }
 
 }
+

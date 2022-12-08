@@ -1,7 +1,15 @@
 'use strict';
 
+/*****************************************
+        Imports
+*****************************************/
 import { select, onEvent } from "./utils.js";
 import { Score } from "./Score.js";
+
+
+/*****************************************
+        Variables
+*****************************************/
 
 const output = select('.output p');
 const startBtn = select('.start-btn');
@@ -16,9 +24,10 @@ const correctSound = new Audio('./assets/img/ding-126626.mp3')
 correctSound.volume = 0.5
 const startSound = new Audio('./assets/img/start-13691.mp3')
 const car = document.getElementById('my-car');
-
-
-
+const leaderboard = select('.leaderboard-card');
+const leaderboardWrapper = select('.leaderboards')
+leaderboardWrapper.classList.add('hidden');
+const showScores = select('.high-scores');
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
@@ -27,17 +36,27 @@ const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency',
 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician',
 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
-'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
-'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
-'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework',
-'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery',
-'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
-'keyboard', 'window'];
+'banana'];
+
+
 
 let points = 0;
 let currentWord = '';
 const arr = []
 
+
+
+/*****************************************
+        Clearing inputs
+*****************************************/
+
+userInput.value = '';
+userInput.disabled = true;
+
+
+/*****************************************
+        Random Word Function
+*****************************************/
 function getRandomWord(arr){
     for (let i = 0; i < words.length; i++) {
         arr[i] = Math.floor(Math.random() * arr.length);
@@ -45,9 +64,13 @@ function getRandomWord(arr){
     }
 }
 
+/*****************************************
+        Timer Function
+*****************************************/
+
 function startTimer(){
     // Start Timer
-    let timeLeft = 60;
+    let timeLeft = 3;
     let countDown = 4;
     let countDownExpire = setInterval(function(){
         countDown -= 1;
@@ -80,17 +103,25 @@ function startTimer(){
 
 
 
+/*****************************************
+        Start button
+*****************************************/
 onEvent('click', startBtn, function(){
+
+        // Making sure values are reset and audio plays
+        userInput.value = '';
+        userInput.disabled = false;
+        startBtn.style.visibility = 'hidden'
 
         startTimer();    
         playSong.play();
         startSound.play();
-        userInput.value = '';
-        startBtn.style.visibility = 'hidden'
 
-       
-        let randomWord = getRandomWord(words)
 
+        // Getting random word
+        let randomWord = getRandomWord(words);
+        
+        // Comparing the random word and user inputs value
         addEventListener('keyup', function(event){
     
                 event.preventDefault();
@@ -115,8 +146,18 @@ onEvent('click', startBtn, function(){
 
 
 
+/*****************************************
+        Leaderboard
+*****************************************/
+
+// Creating a local storage for high scores
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
 function getScore(){
 
+    // Resetting values 
+    userInput.value = '';
+    userInput.disabled = true;
     playSong.pause()
     playSong.currentTime = 0;
     playAgain.classList.add('bounce');
@@ -126,13 +167,15 @@ function getScore(){
     car.classList.remove('anim')
     car.classList.add('hide-car')
 
+    // Creating values
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
-
     let percentage = (points / words.length) * 100
+    let newPoints = points.toString().padStart(2, '0');
     let newPerc = percentage.toFixed(2)
 
     const newScore = new Score(todaysDate, points, newPerc);
+
     resultPage.classList.remove('hidden')
     resultPage.classList.add('visible')
     resultPage.innerHTML = `  
@@ -141,37 +184,124 @@ function getScore(){
             <h2>Results!</h2>
             <h3>Date: <span>${newScore.date}</span></h3>
             <h3>Points: <span>${newScore.points}</span></h3>
-            <h3>Percentage: <span>You hit ${newScore.percentage}% out of 90 words!</span></h3>
+            <h3>Percentage: <span>You hit ${newScore.percentage}% out of ${words.length} words!</span></h3>
             <div class="btn-result-wrapper">
             </div>
         </div>
     </div>
-`
-  
+` 
 
-    
+
+// Creating my leaderboard 
+
+leaderboardWrapper.classList.remove('hidden');
+
+const score = {
+    score: newPoints,
+    percentage: newPerc
 }
 
+// Pushing and sorting my score object into an array
+highScores.push(score);
+
+highScores.sort((a,b) => b.score - a.score);
+
+highScores.splice(9);
+
+localStorage.setItem('highScores', JSON.stringify(highScores));
+
+
+displayScores()
+
+};
+
+/*****************************************
+        Display the leaderboard
+*****************************************/
+
+function displayScores(){
+let index = 1;
+
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+    leaderboard.innerHTML = highScores.map(score => {
+        return `<div class="entree">
+                    <li> #<span>${index++}</span></li>
+                    <li> Score: <span>${score.score}</span></li>
+                    <li> Percent: <span>${score.percentage}%</span></li>
+                </div>`
+    }).join('');
+    
+};
+
+
+onEvent('click', showScores, function(){
+    leaderboardWrapper.classList.remove('hidden');
+    displayScores();
+});
+
+onEvent('click', leaderboardWrapper, function(){
+    leaderboardWrapper.classList.add('hidden');
+})
+
+/*****************************************
+        Play Again Function
+*****************************************/
 onEvent('click', playAgain, function(){
     playSong.pause()
     playSong.currentTime = 0;
-    startBtn.style.visibility = 'visible'
+    startBtn.style.visibility = 'visible';
 
     playAgain.classList.remove('bounce');
-    playAgain.classList.add('hidden')
+    playAgain.classList.add('hidden');
     userInput.value = '';
-    startSound.play()
+    startSound.play();
     
-    car.classList.remove('anim')
-    car.classList.add('hide-car')
+    car.classList.remove('anim');
+    car.classList.add('hide-car');
 
-    resultPage.classList.remove('visible')
-    resultPage.classList.add('hidden')
+    resultPage.classList.remove('visible');
+    resultPage.classList.add('hidden');
 
-    output.innerHTML = `<p>Click start to play!</p>`;
+    leaderboardWrapper.classList.add('hidden');
+
     points = 0;
     let timeLeft = 60;
     clearInterval(timeLeft)
     timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`
     pointCount.innerText = `Points: ${points}`
-})
+
+    userInput.value = '';
+    userInput.disabled = false;
+    startTimer();    
+    playSong.play();
+    startSound.play();
+    userInput.value = '';
+    startBtn.style.visibility = 'hidden'
+
+   
+    let randomWord = getRandomWord(words)
+
+    addEventListener('keyup', function(event){
+
+            event.preventDefault();
+                if(output.innerText == userInput.value){
+                    correctSound.play()
+                    userInput.value = '';
+                    output.innerText = `${randomWord = getRandomWord(words)}`;
+
+                    points++
+                    pointCount.innerText = `Points: ${points}`
+
+                    currentWord = randomWord;
+                    arr.push(currentWord)
+
+                } else if (output.innerText !== userInput.value) {
+
+                } else {
+                    getScore()
+                }
+    });
+    
+});
+

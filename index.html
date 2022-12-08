@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">  
         <script src="./assets/script/index.js" type="module"></script>
     </head>
     <body>
@@ -59,18 +59,30 @@
                         
                         <p>Type as many words as fast as you can!</p>
                         <p>Created by Enjae Antonio</p>
-                        <section class="result-page hidden">
-                            <div class="result-card">
-                                <div class="results">
-                                    <h2>Results!</h2>
-                                    <h3>Date: <span>Wed Nov 30 2022</span></h3>
-                                    <h3>Points: <span></span></h3>
-                                    <h3>Percentage: <span></span></h3>
-                                    <div class="btn-result-wrapper">
+                        <div class="result-wrapper">
+                            <section class="result-page hidden">
+                                <div class="result-card">
+                                    <div class="results">
+                                        <h2>Results!</h2>
+                                        <h3>Date: <span>Wed Nov 30 2022</span></h3>
+                                        <h3>Points: <span></span></h3>
+                                        <h3>Percentage: <span></span></h3>
+                                        <div class="btn-result-wrapper">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>                           
+                            </section>
+                            <section class="leaderboards">
+                                <h2>Fastest Speeds</h2>
+                                <p>(Click to close)</p>
+                                <div class="leaderboard-card">
+                                    <div class="entree">
+                                    </div>
+                                </div>
+                            </section>
+                            
+                        </div>
+                        <button class="high-scores">Scores</button>
                         <img src="./assets/img/car-24-64.png" id="my-car" class="hide-car"alt="">
                     </div>
                 </section>
