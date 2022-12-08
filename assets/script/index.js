@@ -70,7 +70,7 @@ function getRandomWord(arr){
 
 function startTimer(){
     // Start Timer
-    let timeLeft = 3;
+    let timeLeft = 60;
     let countDown = 4;
     let countDownExpire = setInterval(function(){
         countDown -= 1;
