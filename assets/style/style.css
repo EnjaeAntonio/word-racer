@@ -134,6 +134,7 @@ h1 span {
     width: 100%;
     height: 100%;
     display: flex;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     background-color: rgba(26, 29, 40, .5);
@@ -174,6 +175,62 @@ h3 span {
     padding-bottom: 15px;
     text-align: left;
 }
+
+
+.leaderboards{
+    border: 3px solid var(--app-red);
+    padding: 10px 0;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100vh;
+    text-align: center;
+    position: fixed;
+    right: 0;
+    top: 0;
+    /* width: 50%; */
+}
+
+table {
+    border-spacing: 40px 0;
+}
+
+.leaderboards th {
+    color: var(--app-red);
+}
+
+td {
+    color: var(--app-light-bg);
+}
+
+
+
+.leaderboard-card h2 {  
+    text-align: center;
+}
+
+.entree {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.high-scores{
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: var(--app-orange);
+    color: #fff;
+}
+
+li {
+    padding: 0 20px;
+    color: #fff;
+}
+
+li span {
+    font-size: 1rem;
+    color: var(--app-red);
+}
+
 .btn-result-wrapper{
     display: flex;
     justify-content: center;
@@ -186,6 +243,7 @@ h3 span {
     justify-content: center;
     align-items: center;
     height: 80vh;
+    width: 100%;
 }
 
 .start-btn {
@@ -308,46 +366,6 @@ input[type="text"]{
   -webkit-animation-duration: 128s;
 }
 
-.result-wrapper {
-    display: flex;
-}
-
-.leaderboards{
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    border: 3px solid var(--app-red);
-    padding: 10px 0;
-    cursor: pointer;
-}
-
-
-.leaderboard-card h2 {  
-    text-align: center;
-}
-
-.entree {
-    display: flex;
-    gap: 10px;
-    list-style: none;
-}
-
-.high-scores{
-    padding: 10px 30px;
-    border-radius: 5px;
-    background-color: var(--app-orange);
-    color: #fff;
-}
-
-li {
-    padding: 0 20px;
-    color: #fff;
-}
-
-li span {
-    font-size: 1rem;
-    color: var(--app-red);
-}
 
 @keyframes run {
     0% {

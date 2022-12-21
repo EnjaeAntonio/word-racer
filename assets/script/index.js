@@ -26,7 +26,6 @@ const startSound = new Audio('./assets/img/start-13691.mp3')
 const car = document.getElementById('my-car');
 const leaderboard = select('.leaderboard-card');
 const leaderboardWrapper = select('.leaderboards')
-leaderboardWrapper.classList.add('hidden');
 const showScores = select('.high-scores');
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
@@ -70,7 +69,7 @@ function getRandomWord(arr){
 
 function startTimer(){
     // Start Timer
-    let timeLeft = 60;
+    let timeLeft = 3;
     let countDown = 4;
     let countDownExpire = setInterval(function(){
         countDown -= 1;
@@ -78,12 +77,13 @@ function startTimer(){
         if(countDown <= 0) {
 
             
-                car.classList.remove('hide-car')
-                car.classList.add('anim')
+                car.classList.remove('hide-car');
+                car.classList.add('anim');
 
-                clearInterval(countDownExpire)
-                let randomWord = getRandomWord(words)
-                output.innerText = randomWord
+                clearInterval(countDownExpire);
+                let randomWord = getRandomWord(words);
+                output.innerText = randomWord;
+
                 let timeExpire = setInterval(function(){
                     timeLeft -= 1;
                     timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`
@@ -106,12 +106,14 @@ function startTimer(){
 /*****************************************
         Start button
 *****************************************/
+
+const userWords = [];
 onEvent('click', startBtn, function(){
 
         // Making sure values are reset and audio plays
         userInput.value = '';
         userInput.disabled = false;
-        startBtn.style.visibility = 'hidden'
+        startBtn.style.visibility = 'hidden';
 
         startTimer();    
         playSong.play();
@@ -126,7 +128,7 @@ onEvent('click', startBtn, function(){
     
                 event.preventDefault();
                     if(output.innerText == userInput.value){
-                        correctSound.play()
+                        correctSound.play();
                         userInput.value = '';
                         output.innerText = `${randomWord = getRandomWord(words)}`;
     
@@ -134,7 +136,9 @@ onEvent('click', startBtn, function(){
                         pointCount.innerText = `Points: ${points}`
     
                         currentWord = randomWord;
-                        arr.push(currentWord)
+                        userWords.push(currentWord);
+                        currentWord.slice(1)
+                        console.log(userWords)
     
                     } else if (output.innerText !== userInput.value) {
 
@@ -158,26 +162,28 @@ function getScore(){
     // Resetting values 
     userInput.value = '';
     userInput.disabled = true;
+
     playSong.pause()
     playSong.currentTime = 0;
+
     playAgain.classList.add('bounce');
-    playAgain.classList.remove('hidden')
+    playAgain.classList.remove('hidden');
     startBtn.classList.add('hidden');
 
-    car.classList.remove('anim')
-    car.classList.add('hide-car')
+    car.classList.remove('anim');
+    car.classList.add('hide-car');
 
     // Creating values
     let newDate = new Date();
     let todaysDate = newDate.toDateString();
     let percentage = (points / words.length) * 100
     let newPoints = points.toString().padStart(2, '0');
-    let newPerc = percentage.toFixed(2)
+    let newPerc = percentage.toFixed(2);
 
     const newScore = new Score(todaysDate, points, newPerc);
 
-    resultPage.classList.remove('hidden')
-    resultPage.classList.add('visible')
+    resultPage.classList.remove('hidden');
+    resultPage.classList.add('visible');
     resultPage.innerHTML = `  
     <div class="result-card">
         <div class="results">
@@ -189,7 +195,7 @@ function getScore(){
             </div>
         </div>
     </div>
-` 
+`;
 
 
 // Creating my leaderboard 
@@ -199,7 +205,7 @@ leaderboardWrapper.classList.remove('hidden');
 const score = {
     score: newPoints,
     percentage: newPerc
-}
+};
 
 // Pushing and sorting my score object into an array
 highScores.push(score);
@@ -210,8 +216,7 @@ highScores.splice(9);
 
 localStorage.setItem('highScores', JSON.stringify(highScores));
 
-
-displayScores()
+displayScores();
 
 };
 
@@ -231,9 +236,9 @@ const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
                     <li> Percent: <span>${score.percentage}%</span></li>
                 </div>`
     }).join('');
-    
 };
 
+displayScores()
 
 onEvent('click', showScores, function(){
     leaderboardWrapper.classList.remove('hidden');
