@@ -23,10 +23,10 @@ playSong.volume = 0.05;
 const correctSound = new Audio('./assets/img/ding-126626.mp3')
 correctSound.volume = 0.5
 const startSound = new Audio('./assets/img/start-13691.mp3')
-const car = document.getElementById('my-car');
 const leaderboard = select('.leaderboard-card');
 const leaderboardWrapper = select('.leaderboards')
 const showScores = select('.high-scores');
+
 const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
@@ -75,12 +75,9 @@ function startTimer(){
         countDown -= 1;
         output.innerText = `${countDown}`
         if(countDown <= 0) {
+            output.innerText = `0`
+            clearInterval(countDownExpire); 
 
-            
-                car.classList.remove('hide-car');
-                car.classList.add('anim');
-
-                clearInterval(countDownExpire);
                 let randomWord = getRandomWord(words);
                 output.innerText = randomWord;
 
@@ -166,12 +163,11 @@ function getScore(){
     playSong.pause()
     playSong.currentTime = 0;
 
-    playAgain.classList.add('bounce');
-    playAgain.classList.remove('hidden');
     startBtn.classList.add('hidden');
 
-    car.classList.remove('anim');
-    car.classList.add('hide-car');
+    playAgain.classList.add("bounce");
+    playAgain.style.display = 'block'; // To show the button
+    
 
     // Creating values
     let newDate = new Date();
@@ -188,6 +184,7 @@ function getScore(){
     <div class="result-card">
         <div class="results">
             <h2>Results!</h2>
+
             <h3>Date: <span>${newScore.date}</span></h3>
             <h3>Points: <span>${newScore.points}</span></h3>
             <h3>Percentage: <span>You hit ${newScore.percentage}% out of ${words.length} words!</span></h3>
@@ -196,7 +193,6 @@ function getScore(){
         </div>
     </div>
 `;
-
 
 // Creating my leaderboard 
 
@@ -247,23 +243,25 @@ onEvent('click', showScores, function(){
 
 onEvent('click', leaderboardWrapper, function(){
     leaderboardWrapper.classList.add('hidden');
-})
+});
 
 /*****************************************
         Play Again Function
 *****************************************/
-onEvent('click', playAgain, function(){
-    playSong.pause()
+
+onEvent('click', playAgain, resetGame);
+
+function resetGame() {
+    playSong.pause();
     playSong.currentTime = 0;
     startBtn.style.visibility = 'visible';
+    
+    playAgain.classList.remove("bounce");
+    playAgain.style.display = 'none'; // To hide the button
+    
 
-    playAgain.classList.remove('bounce');
-    playAgain.classList.add('hidden');
     userInput.value = '';
     startSound.play();
-    
-    car.classList.remove('anim');
-    car.classList.add('hide-car');
 
     resultPage.classList.remove('visible');
     resultPage.classList.add('hidden');
@@ -272,9 +270,9 @@ onEvent('click', playAgain, function(){
 
     points = 0;
     let timeLeft = 60;
-    clearInterval(timeLeft)
-    timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`
-    pointCount.innerText = `Points: ${points}`
+    clearInterval(timeLeft);
+    timer.innerHTML = `<i class="fa-solid fa-clock"></i>  ${timeLeft}s`;
+    pointCount.innerText = `Points: ${points}`;
 
     userInput.value = '';
     userInput.disabled = false;
@@ -282,31 +280,25 @@ onEvent('click', playAgain, function(){
     playSong.play();
     startSound.play();
     userInput.value = '';
-    startBtn.style.visibility = 'hidden'
+    startBtn.style.visibility = 'hidden';
 
-   
-    let randomWord = getRandomWord(words)
+    let randomWord = getRandomWord(words);
 
-    addEventListener('keyup', function(event){
+    addEventListener('keyup', function(event) {
+        event.preventDefault();
+        if (output.innerText == userInput.value) {
+            correctSound.play();
+            userInput.value = '';
+            output.innerText = `${randomWord = getRandomWord(words)}`;
 
-            event.preventDefault();
-                if(output.innerText == userInput.value){
-                    correctSound.play()
-                    userInput.value = '';
-                    output.innerText = `${randomWord = getRandomWord(words)}`;
+            points++;
+            pointCount.innerText = `Points: ${points}`;
 
-                    points++
-                    pointCount.innerText = `Points: ${points}`
-
-                    currentWord = randomWord;
-                    arr.push(currentWord)
-
-                } else if (output.innerText !== userInput.value) {
-
-                } else {
-                    getScore()
-                }
+            currentWord = randomWord;
+            arr.push(currentWord);
+        } else if (output.innerText !== userInput.value) {
+        } else {
+            getScore();
+        }
     });
-    
-});
-
+};

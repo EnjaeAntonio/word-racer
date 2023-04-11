@@ -62,19 +62,17 @@ header {
     width: 100%;
 }
 
+
 .play-again-wrapper{
-    width: 50%;
-    display: grid;
-    justify-content: right;
     position: relative;
     z-index: 1;
 }
 .btn-wrapper {
-  
-    width: 50%;
+    
 }
 
 .play-again-btn {
+    display: none;
     background-color: var(--app-green);
     border-radius: 4em;
     font-size: 16px;
