@@ -1,9 +1,10 @@
-# Word Racing Game
+# <h1 align="center">Word Racing Game :car: </h1>
 
-###Play Here!
+### Table of contents
+- [Play Here!](https://enjaeantonio.github.io/word-racer)
+- [Key Components](#Key-Components)
+- [JavaScript Functions](#JavaScript)
 
-
-Click the link <a href='https://enjaeantonio.github.io/word-racer' >Here</a> to play!
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
@@ -11,7 +12,7 @@ Click the link <a href='https://enjaeantonio.github.io/word-racer' >Here</a> to 
 ## Introduction
 This code is for a fast-paced Word Racing game, where players must type as many words as they can within a 60-second time limit. The game is built using JavaScript, HTML, and CSS. It features a start/reset button, a countdown timer, a random word generator, user input handling, and a leaderboard using 'localstorage' to store and display high scores. The game also incorporates audio for an engaging user experience. 
 
-![Alt text for the image](assets/img/WordRacingGame.png)
+![Word Racing Game](assets/img/WordRacingGame.png)
 
 ## Key Components
 
