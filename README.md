@@ -9,12 +9,12 @@
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 
-## Introduction
-This code is for a fast-paced Word Racing game, where players must type as many words as they can within a 60-second time limit. The game is built using JavaScript, HTML, and CSS. It features a start/reset button, a countdown timer, a random word generator, user input handling, and a leaderboard using 'localstorage' to store and display high scores. The game also incorporates audio for an engaging user experience. 
+## Introduction :wave:
+This code is for a fast-paced Word Racing game, where players must type as many words as they can within a 60-second time limit. The game is built using JavaScript, Node.Js and of course HTML/CSS. It features a start/reset button, a countdown timer, a random word generator, user input handling, and a leaderboard using 'localstorage' to store and display high scores. The game also incorporates audio for an engaging user experience. 
 
 ![Word Racing Game](assets/img/WordRacingGame.png)
 
-## Key Components
+## Key Components :key:
 
 #### - HTML
 
@@ -82,7 +82,7 @@ The provided HTML code represents the structure the game. Within the main game s
                 </section>
 ```
 
-## JavaScript
+## JavaScript :computer:
 
 #### - GetRandomWord Function
 The 'getRandomWord' function takes an array (arr) as an argument, which contains a list of words. It iterates through the array using a for loop, and for each iteration, it calculates a random index based on the length of the array. It then returns the word at the calculated random index from the input array. 
