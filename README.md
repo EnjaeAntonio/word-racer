@@ -2,7 +2,7 @@
 
 ### Table of contents
 - [Play Here!](https://enjaeantonio.github.io/word-racer)
-- [Key Components](#Key-Components-:key:)
+- [Key Components](#Key-Components)
 - [JavaScript Functions](#JavaScript)
 
 
@@ -14,7 +14,7 @@ This code is for a fast-paced Word Racing game, where players must type as many 
 
 ![Word Racing Game](assets/img/WordRacingGame.png)
 
-## Key Components :key:
+## Key Components
 
 #### - HTML
 
@@ -82,7 +82,7 @@ The provided HTML code represents the structure the game. Within the main game s
                 </section>
 ```
 
-## JavaScript :computer:
+## JavaScript 
 
 #### - GetRandomWord Function
 The 'getRandomWord' function takes an array (arr) as an argument, which contains a list of words. It iterates through the array using a for loop, and for each iteration, it calculates a random index based on the length of the array. It then returns the word at the calculated random index from the input array. 
