@@ -2,7 +2,7 @@
 
 ### Table of contents
 - [Play Here!](https://enjaeantonio.github.io/word-racer)
-- [Key Components](#Key-Components)
+- [Key Components](#Key-Components-:key:)
 - [JavaScript Functions](#JavaScript)
 
 
