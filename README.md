@@ -82,7 +82,7 @@ The provided HTML code represents the structure the game. Within the main game s
                 </section>
 ```
 
-### JavaScript
+## JavaScript
 
 #### - GetRandomWord Function
 The 'getRandomWord' function takes an array (arr) as an argument, which contains a list of words. It iterates through the array using a for loop, and for each iteration, it calculates a random index based on the length of the array. It then returns the word at the calculated random index from the input array. 
